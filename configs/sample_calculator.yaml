@@ -1,0 +1,42 @@
+# Sampling configuration for calculator model
+init_from: "resume"
+out_dir: "out-calculator"
+
+# You can specify a single start sequence:
+# start: "2+4-8*10="
+
+# Or a list of start sequences (each will be sampled num_samples times):
+start:
+  - "2+4-8*10="
+  - "100-50+25="
+  - "7*8+12="
+  - "99/3-11="
+  - "3.14+2.86="
+  - "10.5*4.2-8.75="
+  - "100/4+12.5="
+  - "45.6789-23.4567="
+  - "0.25*0.5+0.125="
+  - "99.99/3.33="
+  - "12.345+67.8901-30.1234="
+  - "8.5*2-4.25/1.7="
+  - "150.75-25.5+10.25="
+  - "7.777*9.999="
+  - "1000/8-100.125="
+  - "3.1416*2*5="
+  - "42.42-21.21*2="
+  - "88.8888/4.4444="
+  - "15+25.5-10.25*2="
+  - "0.1+0.2+0.3+0.4="
+  - "50.5/5+25.25="
+  - "123.456*2-100.5="
+
+num_samples: 5
+max_new_tokens: 100
+temperature: 0.1  # Greedy decoding for math
+top_k: 5
+stop_token_char: "\n"
+seed: 1337
+device: "cuda"
+dtype: "float32"
+compile: false
+

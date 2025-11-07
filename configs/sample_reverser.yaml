@@ -1,0 +1,23 @@
+# Sampling configuration for reverser model
+init_from: "resume"
+out_dir: "out-reverser"
+
+# You can specify a single start sequence:
+# start: "thequickbrownfox="
+
+# Or a list of start sequences (each will be sampled num_samples times):
+start:
+  - "thequickbrownfox="
+  - "helloworld="
+  - "python="
+
+num_samples: 10
+max_new_tokens: 100
+temperature: 0.1  # Greedy decoding
+top_k: 5
+stop_token_char: "\n"
+seed: 1337
+device: "cuda"
+dtype: "float32"
+compile: false
+

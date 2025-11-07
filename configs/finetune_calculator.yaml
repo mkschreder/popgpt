@@ -1,0 +1,55 @@
+# Fine-tuning configuration for calculator
+# Demonstrates loading weights from another checkpoint
+io:
+  out_dir: "out-calculator-finetuned"
+  eval_interval: 250
+  log_interval: 10
+  eval_iters: 200
+  always_save_checkpoint: true
+  init_from: "resume"
+  resume_from: "out-shakespeare-char"  # Load from shakespeare checkpoint
+  weights_only: true  # Only load model weights, reset training state
+
+wandb:
+  enabled: false
+  project: "popgpt"
+  run_name: "calculator-finetune"
+
+data:
+  dataset: "calculator"
+  batch_size: 128
+  block_size: 64
+  mask_before_token: "="
+  mask_per_line: true
+  align_to_lines: true
+
+model:
+  # These will be overridden by the checkpoint
+  n_layer: 6
+  n_head: 6
+  d_model: 384
+  d_head: 64
+  dropout: 0.1  # Use dropout for fine-tuning
+  bias: false
+
+optimizer:
+  learning_rate: 1e-4  # Lower LR for fine-tuning
+  max_iters: 2000
+  weight_decay: 0.1
+  beta1: 0.9
+  beta2: 0.95
+  grad_clip: 1.0
+  gradient_accumulation_steps: 1
+
+lr_schedule:
+  decay_lr: true
+  warmup_iters: 100
+  lr_decay_iters: 2000
+  min_lr: 1e-5
+
+system:
+  device: "cuda"
+  dtype: "bfloat16"
+  compile: true
+  seed: 1337
+

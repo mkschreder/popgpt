@@ -1,0 +1,48 @@
+# Training configuration for Shakespeare character-level model
+io:
+  out_dir: "out-shakespeare-char"
+  eval_interval: 250
+  log_interval: 10
+  eval_iters: 200
+  always_save_checkpoint: true
+  init_from: "scratch"
+
+wandb:
+  enabled: false
+  project: "popgpt"
+  run_name: "shakespeare-char"
+
+data:
+  dataset: "shakespeare_char"
+  batch_size: 64
+  block_size: 256
+
+model:
+  n_layer: 6
+  n_head: 6
+  d_model: 384
+  d_head: 64
+  dropout: 0.2
+  bias: false
+
+optimizer:
+  learning_rate: 1e-3
+  max_iters: 5000
+  weight_decay: 0.1
+  beta1: 0.9
+  beta2: 0.99
+  grad_clip: 1.0
+  gradient_accumulation_steps: 2
+
+lr_schedule:
+  decay_lr: true
+  warmup_iters: 100
+  lr_decay_iters: 5000
+  min_lr: 1e-4
+
+system:
+  device: "cuda"
+  dtype: "bfloat16"
+  compile: true
+  seed: 1337
+

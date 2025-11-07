@@ -1,0 +1,51 @@
+# Training configuration for calculator dataset
+io:
+  out_dir: "out-calculator"
+  eval_interval: 500
+  log_interval: 10
+  eval_iters: 200
+  always_save_checkpoint: true
+  init_from: "resume"
+
+wandb:
+  enabled: false
+  project: "popgpt"
+  run_name: "calculator"
+
+data:
+  dataset: "calculator"
+  batch_size: 128
+  block_size: 64
+  mask_before_token: "="
+  mask_per_line: true
+  align_to_lines: true
+
+model:
+  n_layer: 12
+  n_head: 12
+  d_model: 768
+  d_head: 64
+  dropout: 0.0
+  bias: false
+
+optimizer:
+  learning_rate: 6e-4
+  max_iters: 100000
+  weight_decay: 0.1
+  beta1: 0.9
+  beta2: 0.95
+  grad_clip: 1.0
+  gradient_accumulation_steps: 2
+
+lr_schedule:
+  decay_lr: true
+  warmup_iters: 200
+  lr_decay_iters: 10000
+  min_lr: 5e-5
+
+system:
+  device: "cuda"
+  dtype: "float32"
+  compile: false
+  seed: 1337
+

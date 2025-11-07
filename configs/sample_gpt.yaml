@@ -1,0 +1,14 @@
+# Sampling configuration for GPT model
+init_from: "resume"
+out_dir: "out-gpt"
+start: "\n"
+num_samples: 5
+max_new_tokens: 500
+temperature: 0.8
+top_k: 200
+stop_token_char: null
+seed: 1337
+device: "cuda"
+dtype: "float32"
+compile: false
+

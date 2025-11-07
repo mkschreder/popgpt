@@ -1,0 +1,45 @@
+# Sampling configuration for word calculator model
+init_from: "resume"
+out_dir: "out-wordcalc"
+
+# You can specify a single start sequence:
+# start: "one plus two plus four="
+
+# Or a list of start sequences (each will be sampled num_samples times):
+start:
+  - "one plus two plus four="
+  - "twentytwo minus two divided by ten="
+  - "two times two="
+  - "fourtyone divided by ten="
+  - "five plus five="
+  - "ten times three="
+  - "hundred divided by four="
+  - "seven minus three plus two="
+  - "fifteen times two minus five="
+  - "eight plus twelve="
+  - "ninety nine divided by three="
+  - "six times seven plus one="
+  - "twenty minus five times two="
+  - "three plus four plus five="
+  - "fifty divided by two="
+  - "eleven times eleven="
+  - "sixteen plus sixteen="
+  - "forty two minus seven="
+  - "nine times nine="
+  - "one hundred plus fifty="
+  - "thirteen plus seventeen="
+  - "thirty times three divided by two="
+  - "fourteen minus six plus eight="
+  - "eighty divided by four="
+  - "twelve times five="
+
+num_samples: 5
+max_new_tokens: 100
+temperature: 0.1  # Greedy decoding for math
+top_k: 5
+stop_token_char: "\n"
+seed: 1337
+device: "cuda"
+dtype: "float32"
+compile: false
+
